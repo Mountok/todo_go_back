@@ -40,7 +40,7 @@ func main() {
 	service := service.NewServices(repos)
 	handler := handler.NewHandler(service)
 	srv := new(todoapp.Server)
-	if err := srv.Run(viper.GetString("PORT"),handler.InitRoutes()); err == nil {
+	if err := srv.Run("0.0.0.0:",os.Getenv("PORT"),handler.InitRoutes()); err == nil {
 		logrus.Fatalf("Ошибка при запуске http сервера: %s", err)
 	}
 }
